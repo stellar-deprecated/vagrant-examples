@@ -38,9 +38,9 @@ KNOWN_PEERS=[]
 
 QUORUM_THRESHOLD=2
 QUORUM_SET=[
-  "gsj7qk6sDE2Rv979bz3kwzuaQ9pRVKSBLYtrD6NNuLriqRW7ccQ",
-  "gsQfnr7mWcFqpFddmp9J6cMxEqk8C3BwqQdmD42bmYPTcPLHmNR",
-  "gsdbsJKV6uNaLz7VPDRKzb8ZR5ao26L3eT1kioMu32Yg2mBtsgF"
+  "gTDZhQ14WuP8rQ9SrkS1EhWNhZyybv97cHNsGRADKQtBoJpTTk",
+  "gsjjWTsQP5C2HpcetiLz4LDa9VECGvZMTyhPUDWi57ZKafV5sA4",
+  "gSCB2HML88CvMwt2iryJGdS61gDr2nhMeYFVWF2B4m6w5js73T"
 ]
 
 DATABASE="postgresql://dbname=stellar"
