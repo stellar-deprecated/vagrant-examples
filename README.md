@@ -11,3 +11,7 @@ vagrant up
 ```
 
 This will stand up a single peer that trusts the SDF testnet nodes.
+
+## Contributing
+
+Please [see CONTRIBUTING.md for details](CONTRIBUTING.md).
