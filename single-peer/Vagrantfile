@@ -1,0 +1,42 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure(2) do |config|
+  # TODO: once stellar-core repo is open is open:
+  #   - remove agent forwarding
+  #   - remove -E on build_stellar_core
+  #   - switching git source to https in build_stellar_core
+  config.ssh.forward_agent = true
+
+  config.vm.provider "virtualbox" do |vb|
+    vb.memory = "2048"
+  end
+
+  config.vm.box = "ubuntu/trusty64"
+
+  config.vm.network "private_network", ip: "192.168.163.10"
+
+  config.vm.synced_folder "../scripts", "/scripts"
+
+  config.vm.provision "shell", inline: <<-SHELL
+    set -e
+    sudo apt-get update
+    sudo /scripts/update_c_libs.sh
+    sudo -E /scripts/build_stellar_core.sh
+    sudo /scripts/create_stellar_user.sh
+    sudo /scripts/setup_postgres.sh
+    sudo /scripts/configure_sdf_peer.sh
+  SHELL
+
+  config.vm.post_up_message = <<-MESSAGE
+    All done!
+
+    To see the logs for your new node run:
+
+        vagrant ssh -c 'sudo tailf /var/log/upstart/stellar-core.log'
+
+    To query status (or other http endpoint commands) run:
+
+        vagrant ssh -c 'curl http://localhost:39132/info'
+  MESSAGE
+end
