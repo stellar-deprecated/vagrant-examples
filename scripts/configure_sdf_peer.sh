@@ -31,7 +31,7 @@ MAX_PEER_CONNECTIONS=30
 PREFERRED_PEERS=[
   "core-testnet1.stellar.org",
   "core-testnet2.stellar.org",
-  "core-testnet2.stellar.org"
+  "core-testnet3.stellar.org"
 ]
 
 KNOWN_PEERS=[]
