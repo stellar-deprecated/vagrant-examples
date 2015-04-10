@@ -1,0 +1,31 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure(2) do |config|
+  config.vm.provider "virtualbox" do |vb|
+    vb.memory = "2048"
+  end
+
+  config.vm.box = "ubuntu/trusty64"
+
+  config.vm.synced_folder "../scripts", "/scripts"
+
+  config.vm.provision "shell", inline: <<-SHELL
+    set -e
+    sudo apt-get update
+    sudo /scripts/update_c_libs.sh
+    sudo /scripts/build_stellar_core.sh
+    sudo /scripts/create_stellar_user.sh
+    sudo /scripts/setup_postgres.sh
+    sudo /scripts/configure_core_base.sh
+    sudo /scripts/clean_disk_space.sh
+  SHELL
+
+  config.vm.post_up_message = <<-MESSAGE
+    All done!
+
+    Now run this to package it at a box for upload:
+
+        vagrant package --output stellar-core-base.box
+  MESSAGE
+end
