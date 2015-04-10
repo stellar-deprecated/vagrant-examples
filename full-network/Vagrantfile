@@ -1,0 +1,68 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+require 'json'
+
+Vagrant.configure(2) do |config|
+  config.vm.provider "virtualbox" do |vb|
+    vb.memory = "1024"
+  end
+
+  config.vm.synced_folder "../scripts", "/scripts"
+
+  core_network = {
+    :corevm1 => "192.168.163.30",
+    :corevm2 => "192.168.163.31",
+    :corevm3 => "192.168.163.32"
+  }
+
+  core_network.each do |name, ip|
+    config.vm.define name do |core_vm|
+      core_vm.vm.box = "stellar/stellar-core-base"
+      core_vm.vm.network "private_network", ip: ip
+      core_vm.vm.provision :shell, inline: <<-SHELL
+        set -e
+        export NODE_NAME=#{name}
+        export NODE_IP=#{ip}
+        export CORE_NETWORK=#{core_network.to_json.inspect}
+        sudo -E /scripts/generate_keys.rb
+        sudo -E /scripts/configure_private_peer.rb
+      SHELL
+    end
+  end
+
+  # config.vm.define :horizon do |horizon|
+  #   horizon.vm.box = "ubuntu/trusty64"
+  #   horizon.vm.network "private_network", ip: "192.168.163.20"
+  #   horizon.vm.provision :shell, inline: <<-SHELL
+  #     set -e
+  #     sudo apt-get update
+  #   SHELL
+  # end
+
+  config.vm.post_up_message = <<-MESSAGE
+    All done!
+
+    You now have a 4-node stellar cluster running within vagrant.
+
+    This includes the following vms:
+
+      - horizon: the horizon API server
+      - core_vm1: a stellar-core validator
+      - core_vm2: a second stellar-core validator
+      - core_vm3: a third stellar-core validator
+
+    To see the logs for your new nodes run:
+
+        vagrant ssh <NODE> -c 'sudo tailf /var/log/upstart/stellar-core.log'
+
+    To query status (or other http endpoint commands) run:
+
+        vagrant ssh <NODE> -c 'curl http://localhost:39132/info'
+
+    To access a ledger database run:
+
+        vagrant ssh <NODE> -c 'sudo -iustellar psql'
+
+  MESSAGE
+end

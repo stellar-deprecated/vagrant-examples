@@ -1,2 +1,3 @@
 .vagrant
 *.box
+/full-network/keys.json
