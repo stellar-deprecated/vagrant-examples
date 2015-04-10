@@ -13,7 +13,7 @@ validation_pair=`/opt/stellar/stellar-core/bin/stellar-core --genseed`
 validation_seed=`echo "${validation_pair}" | grep Secret | cut -d: -f2 | cut -b2-`
 
 cat > /opt/stellar/stellar-core/etc/stellar-core.cfg <<CFG
-PEER_PORT= 39133
+PEER_PORT=39133
 RUN_STANDALONE=false
 LOG_FILE_PATH="/var/log/stellar-core.log"
 
