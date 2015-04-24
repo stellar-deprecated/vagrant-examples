@@ -52,7 +52,7 @@ Vagrant.configure(2) do |config|
 
     This includes the following vms:
 
-      - horizon: the horizon API server
+      - horizon: the horizon API server - still Work In Progress, will need migrations run manually
       - core_vm1: a stellar-core validator
       - core_vm2: a second stellar-core validator
       - core_vm3: a third stellar-core validator

@@ -53,6 +53,8 @@ This stands up a 4 node private stellar network similar to the SDF testnet. You
 can use this for testing or just to get a feel for how to run stellar in
 production.
 
+**Note:** As of 2015/04/23, the horizon VM will need migrations run manually before it's usable. Will fully automate this at a later date.
+
 ## Contributing
 
 Please [see CONTRIBUTING.md for details](CONTRIBUTING.md).
