@@ -2,7 +2,7 @@
 
 set -e
 
-if dpkg-query -W libstdc++ libpq5 lldb-3.6; then
+if dpkg-query -W libstdc++6 libpq5 lldb-3.6; then
   exit 0
 fi
 
