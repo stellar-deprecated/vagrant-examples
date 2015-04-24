@@ -14,11 +14,12 @@ Vagrant.configure(2) do |config|
   config.vm.provision "shell", inline: <<-SHELL
     set -e
     sudo apt-get update
-    sudo /scripts/update_c_libs.sh
+    sudo /scripts/compiletime_c_libs.sh
     sudo /scripts/build_stellar_core.sh
+    sudo /scripts/runtime_c_libs.sh
     sudo /scripts/create_stellar_user.sh
     sudo /scripts/setup_postgres.sh
-    sudo /scripts/configure_core_base.sh
+    sudo /scripts/configure_sdf_peer.sh
     sudo /scripts/clean_disk_space.sh
   SHELL
 
