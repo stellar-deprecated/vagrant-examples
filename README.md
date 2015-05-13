@@ -49,11 +49,11 @@ cd full-network
 vagrant up
 ```
 
-This stands up a 4 node private stellar network similar to the SDF testnet. You
+This stands up a 3 node private stellar network similar to the SDF testnet. You
 can use this for testing or just to get a feel for how to run stellar in
 production.
 
-**Note:** As of 2015/04/23, the horizon VM will need migrations run manually before it's usable. Will fully automate this at a later date.
+**Note:** As of 2015/05/13, the horizon deployment needs updating so any interactions will have to be made against stellar-core directly.
 
 ## Contributing
 
