@@ -38,7 +38,7 @@ PREFERRED_PEERS=<%= preferred_peers.inspect %>
 
 KNOWN_PEERS=[]
 
-QUORUM_THRESHOLD=2
+QUORUM_THRESHOLD=3
 QUORUM_SET=<%= quorum_set.inspect %>
 
 DATABASE="postgresql://dbname=stellar"
