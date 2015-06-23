@@ -25,7 +25,7 @@ This will stand up a single peer that trusts the SDF testnet nodes.
 ### stellare-core-base
 
 ```sh
-cd single-peer
+cd stellar-core-base
 vagrant up
 ```
 
