@@ -53,7 +53,7 @@ This stands up a 3 node private stellar network similar to the SDF testnet. You
 can use this for testing or just to get a feel for how to run stellar in
 production.
 
-**Note:** As of 2015/05/13, the horizon deployment needs updating so any interactions will have to be made against stellar-core directly.
+**Note:** As of 2015/07/30 the horizon VM is not provisonable and the core vms don't achieve consensus. This appears to be an issue with the start script. Rather than fixing this script, any new examples will be based on https://github.com/stellar/docker-stellar-core
 
 ## Contributing
 
