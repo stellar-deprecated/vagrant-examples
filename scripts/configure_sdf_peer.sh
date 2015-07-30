@@ -4,7 +4,7 @@ set -e
 
 mkdir -p /opt/stellar/stellar-core/{bin,etc}
 
-cp stellar-core/bin/stellar-core /opt/stellar/stellar-core/bin
+cp stellar-core/src/stellar-core /opt/stellar/stellar-core/bin
 
 peer_pair=`/opt/stellar/stellar-core/bin/stellar-core --genseed`
 peer_seed=`echo "${peer_pair}" | grep Secret | cut -d: -f2 | cut -b2-`
