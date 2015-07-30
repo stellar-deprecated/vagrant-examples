@@ -34,14 +34,15 @@ TARGET_PEER_CONNECTIONS=20
 
 MAX_PEER_CONNECTIONS=30
 
+DATABASE="postgresql://dbname=stellar"
+
 PREFERRED_PEERS=<%= preferred_peers.inspect %>
 
 KNOWN_PEERS=[]
 
-QUORUM_THRESHOLD=3
-QUORUM_SET=<%= quorum_set.inspect %>
-
-DATABASE="postgresql://dbname=stellar"
+[QUORUM_SET]
+THRESHOLD=2
+VALIDATORS=<%= quorum_set.inspect %>
 
 <% core_network.each do |name, ip| %>
 [HISTORY.<%= name %>]

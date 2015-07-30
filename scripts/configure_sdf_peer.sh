@@ -4,7 +4,7 @@ set -e
 
 mkdir -p /opt/stellar/stellar-core/{bin,etc}
 
-cp stellar-core/bin/stellar-core /opt/stellar/stellar-core/bin
+cp stellar-core/src/stellar-core /opt/stellar/stellar-core/bin
 
 peer_pair=`/opt/stellar/stellar-core/bin/stellar-core --genseed`
 peer_seed=`echo "${peer_pair}" | grep Secret | cut -d: -f2 | cut -b2-`
@@ -20,30 +20,25 @@ LOG_FILE_PATH="/var/log/stellar-core.log"
 HTTP_PORT=39132
 PUBLIC_HTTP_PORT=false
 
+DATABASE="postgresql://dbname=stellar"
+
 PEER_SEED="${peer_seed}"
 
 VALIDATION_SEED="${validation_seed}"
 
-TARGET_PEER_CONNECTIONS=20
-
-MAX_PEER_CONNECTIONS=30
-
-PREFERRED_PEERS=[
+KNOWN_PEERS=[
   "core-testnet1.stellar.org",
   "core-testnet2.stellar.org",
   "core-testnet3.stellar.org"
 ]
 
-KNOWN_PEERS=[]
-
-QUORUM_THRESHOLD=2
-QUORUM_SET=[
-  "gTDZhQ14WuP8rQ9SrkS1EhWNhZyybv97cHNsGRADKQtBoJpTTk",
-  "gsjjWTsQP5C2HpcetiLz4LDa9VECGvZMTyhPUDWi57ZKafV5sA4",
-  "gSCB2HML88CvMwt2iryJGdS61gDr2nhMeYFVWF2B4m6w5js73T"
+[QUORUM_SET]
+THRESHOLD=2
+VALIDATORS=[
+  "GDKXE2OZMJIPOSLNA6N6F2BVCI3O777I2OOC4BV7VOYUEHYX7RTRYA7Y",
+  "GCUCJTIYXSOXKBSNFGNFWW5MUQ54HKRPGJUTQFJ5RQXZXNOLNXYDHRAP",
+  "GC2V2EFSXN6SQTWVYA5EPJPBWWIMSD2XQNKUOHGEKB535AQE2I6IXV2Z"
 ]
-
-DATABASE="postgresql://dbname=stellar"
 
 [HISTORY.vagrant_single]
 get="cp /opt/stellar/stellar-core/{0} {1}"
