@@ -1,3 +1,12 @@
+# No longer maintained
+
+We only maintain the following:
+* stable releases
+  * package based installation https://github.com/stellar/packages
+  * docker based Horizon & core combo https://github.com/stellar/docker-stellar-core-horizon
+* experimental releases
+  * docker based stellar-core only https://github.com/stellar/docker-stellar-core
+
 # stellar vagrant examples
 
 ## Usage
